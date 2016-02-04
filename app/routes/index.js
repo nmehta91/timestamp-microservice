@@ -4,7 +4,7 @@ var path = process.cwd();
 
 module.exports = function (app) {
 
-	app.get('/', function(request, response){
+	app.route('/').get(function(request, response){
 		response.sendFile(process.cwd() + '/public/index.html');
 	})
 };

@@ -8,19 +8,19 @@ module.exports = function(app) {
         var unix = null;
         var natural = null;
         
-        if(typeof date === "number"){
-            unix = date;
+        if(typeof +date === "number"){
+            unix = +date;
             natural = unixToNatural(unix);
         }
         
-        else if(isNaN(date) && moment(date, "MMMM D, YYYY").isValid()){
+        if(isNaN(+date) && moment(date, "MMMM D, YYYY").isValid()){
             unix = naturalToUnix(date);
-            natural = date;
+            natural = unixToNatural(unix);
         }
         
         var dateJSON = {
-          unix: unix,
-          natural: natural
+          "unix": unix,
+          "natural": natural
         };
        
        response.send(JSON.stringify(dateJSON));
